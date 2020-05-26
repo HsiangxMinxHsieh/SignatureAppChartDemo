@@ -15,10 +15,7 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 
-open class VisibleLineRender(
-    protected var mChart: LineDataProvider, animator: ChartAnimator?,
-    viewPortHandler: ViewPortHandler?
-) : LineRadarRenderer(animator, viewPortHandler) {
+open class VisibleLineRender(private var mChart: LineDataProvider, animator: ChartAnimator?, viewPortHandler: ViewPortHandler?) : LineRadarRenderer(animator, viewPortHandler) {
     val TAG = javaClass.simpleName
 
     /**
@@ -71,6 +68,8 @@ open class VisibleLineRender(
     protected fun drawDataSet(c: Canvas?, dataSet: ILineDataSet) {
         if (dataSet.entryCount < 1) return
         mRenderPaint.strokeWidth = dataSet.lineWidth
+        logi(TAG, "Debug區005 寬度為${mRenderPaint.strokeWidth}")
+        mRenderPaint.strokeWidth = 10f
         mRenderPaint.pathEffect = dataSet.dashPathEffect
         when (dataSet.mode) {
             LineDataSet.Mode.LINEAR, LineDataSet.Mode.STEPPED -> drawLinear(c, dataSet)
@@ -188,7 +187,7 @@ open class VisibleLineRender(
         }
     }
 
-    private var mLineBuffer = FloatArray(4)
+    private var mLineBuffer = FloatArray(4) { 1000f }
 
     /**
      * Draws a normal line.
@@ -196,14 +195,17 @@ open class VisibleLineRender(
      * @param c
      * @param dataSet
      */
+    var count = 0
     private fun drawLinear(c: Canvas?, dataSet: ILineDataSet) {
         val entryCount = dataSet.entryCount
         val isDrawSteppedEnabled = dataSet.mode == LineDataSet.Mode.STEPPED
-        logi(TAG, "現在的Enabled狀態是===>$isDrawSteppedEnabled")
+        logi(TAG, "======================== 呼叫第${++count}次開始========================")
         val pointsPerEntryPair = if (isDrawSteppedEnabled) 4 else 2
         val trans = mChart.getTransformer(dataSet.axisDependency)
         val phaseY = mAnimator.phaseY
+        logi(TAG,"此時phaseY是===>$phaseY")
         mRenderPaint.style = Paint.Style.STROKE
+        mRenderPaint.color
         var canvas: Canvas? = null
         // if the data-set is dashed, draw on bitmap-canvas
         canvas = if (dataSet.isDashedLineEnabled) {
@@ -261,9 +263,12 @@ open class VisibleLineRender(
             if (e1 != null) {
                 var j = 0
                 for (x in mXBounds.min..mXBounds.range + mXBounds.min) {
+
                     e1 = dataSet.getEntryForIndex(if (x == 0) 0 else x - 1) as VisibleEntry
                     e2 = dataSet.getEntryForIndex(x) as VisibleEntry
+//                    logi(TAG,"Debug區010，此時e1是===>$e1,,,e2是===>$e2")
                     if (e1.isVisible && e2.isVisible) {
+                        logi(TAG, "Debug區020，此時e1是===>$e1,,,e2是===>$e2")
                         mLineBuffer[j++] = e1.x
                         mLineBuffer[j++] = e1.y * phaseY
                         if (isDrawSteppedEnabled) {
@@ -274,13 +279,24 @@ open class VisibleLineRender(
                         }
                         mLineBuffer[j++] = e2.x
                         mLineBuffer[j++] = e2.y * phaseY
+                        logi(TAG, "Debug區030，作業完成時，mLineBuffer是===>${mLineBuffer.toList()}")
                     }
                 }
                 if (j > 0) {
                     trans.pointValuesToPixel(mLineBuffer)
+                    logi(TAG, "Debug區035，此時的值是===>${(mXBounds.range + 1)},${pointsPerEntryPair}")
                     val size = Math.max((mXBounds.range + 1) * pointsPerEntryPair, pointsPerEntryPair) * 2
                     mRenderPaint.color = dataSet.color
+                    logi(TAG, "Debug區036，${mRenderPaint.strokeWidth}")
+//                    mRenderPaint.strokeWidth = 3f
+                    logi(TAG, "Debug區040，繪製前，size是===>$size")
+//                    val paint = Paint()
+//                    paint.strokeWidth = 10f
+//                    paint.color = Color.BLACK
+//                    logi(TAG,"color是===>$")
                     canvas!!.drawLines(mLineBuffer, 0, size, mRenderPaint)
+//                    canvas!!.drawLines(mLineBuffer, 0, size, paint)
+//                    canvas.drawLines(mLineBuffer, 0, size, mRenderPaint)
                 }
             }
         }
@@ -413,7 +429,7 @@ open class VisibleLineRender(
                         j += 2
                         continue
                     }
-//                    if (dataSet.isDrawValuesEnabled) {
+//                    if (dataSet.isDrawValuesEnabled) { //不需要頂端值，因此註解(不註解也不能用)
 //                        drawValue(c, dataSet.valueFormatter, entry.y, entry, i, x.toInt(), y - valOffset, dataSet.getValueTextColor(j / 2))
 //                    }
                     if (entry.icon != null && dataSet.isDrawIconsEnabled) {

@@ -15,6 +15,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.timmymike.notcontinuelinechart.databinding.ActivityLineChartBinding
 import com.timmymike.notcontinuelinechart.dialog_base.DateTool
 import com.timmymike.notcontinuelinechart.dialog_base.toDate
+import com.timmymike.notcontinuelinechart.dialog_base.toDateNonNull
 import com.timmymike.notcontinuelinechart.dialog_base.toString
 import com.timmymike.radarcharttrial.dialog_base.logi
 import java.text.DecimalFormat
@@ -149,7 +150,7 @@ class LineChartActivity : AppCompatActivity() {
 
 //                               由於每次傳入值皆不同，因此Y座標之值皆要重算。
 //            setDrawLabels(true)
-//            axisMaximum = max        //設定圖表最大值//不可設定，因若設定的話，全為0的時候整個座標圖會不見。
+//            axisMaximum = 37800000f        //設定圖表最大值//不可設定，因若設定的話，全為0的時候整個座標圖會不見。
             valueFormatter = MyYAxisValueFormatter(minValue)
             setDrawAxisLine(false) //設定軸線不顯示(只顯示水平Y軸線)
             setDrawGridLines(true) //設定網格線顯示(顯示座標橫槓)
@@ -176,7 +177,7 @@ class LineChartActivity : AppCompatActivity() {
             legend.isEnabled = true //左下角顯示資料名稱
             extraBottomOffset = 20f //設定下方空間
             setScaleEnabled(false) //設定不能縮放
-            animateXY(0, 1000, Easing.EaseInCirc)
+//            animateXY(0, 1000, Easing.EaseInCirc)
 //            animateX(2000)
 //            animateY(2000)
             renderer = VisibleLineRender(this, this.animator, this.viewPortHandler);
@@ -282,25 +283,35 @@ class LineChartActivity : AppCompatActivity() {
         //開始上班時間資料塞入
         val startWorkEntries = ArrayList<VisibleEntry>()
         //由於Entry只可以接受Float值，因此必須很疲勞的將傳入的Int轉為Float...@@a
+        val circleColors = ArrayList<Int>()
         for (i in 0 until dayDatas.size) {
-            if ( dayDatas[i].startedWorkTime == 0L)
+            if ( dayDatas[i].startedWorkTime == 0L) {
                 startWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].startedWorkTime.toFloat(), false))
-            else
+                circleColors.add(context.getColor(R.color.gray))
+            }
+            else {
+                if(dayDatas[i].startedWorkTime>"10:00".toDateNonNull("HH:mm").time)
+                    circleColors.add(context.getColor(R.color.txt_red))
+                else
+                    circleColors.add(context.getColor(R.color.txt_gray5))
+
                 startWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].startedWorkTime.toFloat(), true))
-//            logi(TAG, "開始上班轉換前的值是===>${dayDatas[i].startedWorkTime}")
-//            logi(TAG, "開始上班其意義為是===>${dayDatas[i].startedWorkTime.toDate().toString(timeFormate)}")
+
+            }
         }
         logi(TAG, "完成後的 startWorkEntries 是===>$startWorkEntries")
         val startWorkSet = VisibleLineDataSet(startWorkEntries, "StartWorkTime").apply {
             mode = LineDataSet.Mode.LINEAR //設定曲線模式
             setDrawCircles(true) //設定是否顯示圓點
             setDrawCircleHole(false)
-            setCircleColor(context.getColor(R.color.txt_gray5))
+            setCircleColors(circleColors)
+//            colors = circleColors
             color = ContextCompat.getColor(context, R.color.txt_gray5)//設定線條顏色
-            lineWidth = 1.0f //設定線條寬度
+            lineWidth =1f //設定線條寬度
 //            fillDrawable = null
 //            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
-
+            fillColor = context.getColor(R.color.txt_gray5)
+            fillAlpha = 50
             setDrawFilled(true)     //設定顯示曲線下背景漸層
             setDrawValues(false)    //設定不顯示頂端值
             setDrawHorizontalHighlightIndicator(false)  //設定點擊不顯示水平線條
@@ -313,8 +324,8 @@ class LineChartActivity : AppCompatActivity() {
         }
         //全部線圖資料塞入
         val lineData = LineData()
-//        lineData.addDataSet(startWorkSet)
-        lineData.addDataSet(endWorkSet)
+        lineData.addDataSet(startWorkSet)
+//        lineData.addDataSet(endWorkSet)
 //        lineData.addDataSet(aveWorkSet)
 
         return lineData
@@ -382,7 +393,7 @@ class LineChartActivity : AppCompatActivity() {
 
     private fun getStartTime(i: Int): String {
         val nowStartTime = 1586914200000L //2020-04-15 09:30:00.000
-        val getTime = (nowStartTime + (0L..1800000L).random() + (DateTool.oneDay * i))
+        val getTime = (nowStartTime + (0L..2000000L).random() + (DateTool.oneDay * i))
         val nowGet = getTime.toDate().toString(timeFormate)
 //        logi(TAG, "產生資料時 的開始時間是===>$getTime")
 //        logi(TAG, "產生資料時 的開始時間是===>$nowGet")
