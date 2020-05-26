@@ -66,7 +66,7 @@ class LineChartActivity : AppCompatActivity() {
     }
 
     private fun LineChart.initChartView( datas: List<UserRecordModel.Data>, xLabels: Array<String>) {
-        logi(TAG, "傳入的XLabels是===>${xLabels.toList()}")
+//        logi(TAG, "傳入的XLabels是===>${xLabels.toList()}")
         //  設定白色常數(因為版本高低[高於23&低於23]因此有兩種寫法)
         val useLineColor = context.getColor(R.color.txt_gray5)
 
@@ -76,8 +76,8 @@ class LineChartActivity : AppCompatActivity() {
         this.data = getData(/*this,*/ dayDatas)
 //      取得資料頂端線數值(*8/7為固定算法)
         val max = (dayDatas.map { it.endWorkTime }.max()?.toFloat() ?: 0f) * 8 / 7 // 先試試看Long轉Float是否可行，如果不行再說。
-        logi(TAG, "最大值是===>$max")
-        logi(TAG, "最大值是===>${max.toLong()}")
+//        logi(TAG, "最大值是===>$max")
+//        logi(TAG, "最大值是===>${max.toLong()}")
 
         //依照dayDatas內算出的每天工作時數作處理：加上換行符號與小時
         val useXLables = ArrayList<String>()
@@ -221,7 +221,7 @@ class LineChartActivity : AppCompatActivity() {
     }
 
     /**將資料轉為LineDataSet並放入LineData內中的方法*/
-    private fun getData(/*lineChart: CombinedChart, */dayDatas: ArrayList<DayData>): LineData {
+    private fun getData(dayDatas: ArrayList<DayData>): LineData {
 
         //下班資料塞入
         val endWorkEntries = ArrayList<Entry>()
@@ -229,7 +229,7 @@ class LineChartActivity : AppCompatActivity() {
         for (i in 0 until dayDatas.size) {
             endWorkEntries.add(Entry(i.toFloat(), dayDatas[i].endWorkTime.toFloat()))
         }
-        logi(TAG, "完成後的endWorkEntries是===>$endWorkEntries")
+//        logi(TAG, "完成後的endWorkEntries是===>$endWorkEntries")
         val endWorkSet = LineDataSet(endWorkEntries, "EndWorkTime").apply {
             mode = LineDataSet.Mode.HORIZONTAL_BEZIER //設定曲線模式
             setDrawCircles(false) //設定不顯示圓點
@@ -253,7 +253,7 @@ class LineChartActivity : AppCompatActivity() {
         for (i in 0 until dayDatas.size) {
             aveWorkEntries.add(Entry(i.toFloat(), dayDatas[i].averangeWorkTime.toFloat()))
         }
-        logi(TAG, "完成後的 aveWorkEntries 是===>$aveWorkEntries")
+//        logi(TAG, "完成後的 aveWorkEntries 是===>$aveWorkEntries")
         val aveWorkSet = LineDataSet(aveWorkEntries, "aveWorkTime").apply {
             mode = LineDataSet.Mode.HORIZONTAL_BEZIER //設定曲線模式
             setDrawCircles(false) //設定不顯示圓點
@@ -276,7 +276,7 @@ class LineChartActivity : AppCompatActivity() {
 //            logi(TAG, "開始上班轉換前的值是===>${dayDatas[i].startedWorkTime}")
 //            logi(TAG, "開始上班其意義為是===>${dayDatas[i].startedWorkTime.toDate().toString(timeFormate)}")
         }
-        logi(TAG, "完成後的 startWorkEntries 是===>$startWorkEntries")
+//        logi(TAG, "完成後的 startWorkEntries 是===>$startWorkEntries")
         val startWorkSet = LineDataSet(startWorkEntries, "StartWorkTime").apply {
             mode = LineDataSet.Mode.HORIZONTAL_BEZIER //設定曲線模式
             setDrawCircles(false) //設定不顯示圓點
@@ -323,7 +323,7 @@ class LineChartActivity : AppCompatActivity() {
                 booleanArray.add(true)
             }
         }
-        logi(TAG, "產生useBooleanArray前，完成的booleanArray是===>$booleanArray")
+//        logi(TAG, "產生useBooleanArray前，完成的booleanArray是===>$booleanArray")
         //隨機排序階段
         val useBooleanArray = ArrayList<Boolean>()
         while (booleanArray.size > 0) {
@@ -332,7 +332,7 @@ class LineChartActivity : AppCompatActivity() {
             booleanArray.removeAt(randomIndex)
         }
 
-        logi(TAG, "產生資料前，完成的useBooleanArray是===>$useBooleanArray")
+//        logi(TAG, "產生資料前，完成的useBooleanArray是===>$useBooleanArray")
         logi(TAG, "==========================開始產生資料========================")
 
         for (i in 0 until dataSize) {
@@ -348,7 +348,7 @@ class LineChartActivity : AppCompatActivity() {
 //                userZeroNum -= 1
                 result.add(UserRecordModel.Data("", 0, getStartTime(i), getEndTime(i)))
             } else {
-                result.add(UserRecordModel.Data("", 0, null, 0L.toDate().toString(timeFormate)))
+                result.add(UserRecordModel.Data("", 0, 0L.toDate().toString(timeFormate),null ))
             }
 
         }
