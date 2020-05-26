@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.github.mikephil.charting.charts.CombinedChart
+                    android:id="@+id/chart_line_example_2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="@dimen/content_width_percent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_combine_refresh"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/chart_line_example_2"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:srcCompat="@drawable/ic_refresh_black_24dp"
+                    />
+
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/chart_hb_example"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chart_line_example_2"
+                    app:layout_constraintWidth_percent="@dimen/content_width_percent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_hb_refresh"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/chart_hb_example"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:srcCompat="@drawable/ic_refresh_black_24dp"
+                    />
+
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/chart_pie_example"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chart_hb_example"
+                    app:layout_constraintWidth_percent="@dimen/content_width_percent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_pie_refresh"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/chart_pie_example"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:srcCompat="@drawable/ic_refresh_black_24dp"
+                    />
+
+                <com.github.mikephil.charting.charts.RadarChart
+                    android:id="@+id/chart_radar_chart_example"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chart_pie_example"
+                    app:layout_constraintWidth_percent="@dimen/content_width_percent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_radar_refresh"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/chart_radar_chart_example"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:srcCompat="@drawable/ic_refresh_black_24dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

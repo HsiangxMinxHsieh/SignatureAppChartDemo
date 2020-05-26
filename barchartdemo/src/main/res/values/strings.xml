@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">LineBarCharActivity</string>
+
+    <string name="facebook_app_id">649933775426851</string>
+    <string name="fb_login_protocol_scheme">fb649933775426851</string>
+
+
+    <string name="content">text of notification</string>
+
+    <string name="notif_title">SmartCube Title</string>
+    <string name="notif_content">Content of notification</string>
+
+    <string name="tab_1">Dashboard</string>
+    <string name="tab_2">Activity</string>
+    <string name="tab_3">My Shoe</string>
+    <string name="tab_4">Friends</string>
+    <string name="tab_5">Debug</string>
+
+
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Login -->
+    <string name="login_title">Login</string>
+    <string name="login_email_title">Email</string>
+    <string name="login_email_input_hint">Type your mail account here</string>
+    <string name="login_password_title">Password</string>
+    <string name="login_password_input_hint">Type your password here</string>
+    <string name="login_forgot">Forgot Password?</string>
+    <string name="login_btn_login">Login</string>
+    <string name="login_btn_fb_login">Continues with Facebook</string>
+    <string name="login_btn_ig_login">Continues with Instagram</string>
+    <string name="login_btn_guest_login">Guest Login</string>
+    <string name="login_input_error_email">Please enter the correct email</string>
+    <string name="login_input_error_password">Password length must be greater than 6</string>
+    <string name="login_error_non_login">Your email or password was entered incorrectly</string>
+
+    <!-- scan -->
+    <string name="scan_title">Add Shoe</string>
+
+    <!-- Deashboard -->
+    <string name="deashboard_title">Deashboard</string>
+
+    <!-- Analysis -->
+    <string name="analysis_title">Activity</string>
+
+    <!-- Group -->
+    <string name="group_title">Friends</string>
+    <string name="group_member_title">Group Name</string>
+    <string name="group_member_leave">Leave</string>
+    <string name="group_member_join">Join</string>
+    <string name="group_member_edit">Edit</string>
+    <string name="group_member_list_name">name</string>
+    <string name="group_search_no_input">Please Enter The String Then Search</string>
+    <string name="group_add_edit_title_create_group">Create Group</string>
+    <string name="group_add_edit_btn_create_group">Create Group</string>
+    <string name="group_add_edit_tv_title">Create Group Or Edit Group</string>
+    <string name="group_add_edit_tv_information">Group Infromation</string>
+    <string name="group_add_edit_img_group_image">Group Image</string>
+    <string name="group_add_edit_tv_change_image">Change Group Image</string>
+    <string name="group_add_edit_edt_ch_text">Type your name here.</string>
+    <string name="group_add_edit_tv_name">Name</string>
+    <string name="group_add_edit_btn_save">　Create Group Or Confirm Edit　</string>
+    <string name="group_add_edit_btn_delete">　Delete Group　</string>
+    <string name="group_add_edit_no_enter_message">Please Enter Group Name!</string>
+    <string name="group_add_edit_name_too_long_message">Group Name Must Be Less Than 20 Characters!</string>
+    <string name="group_add_edit_create_success_message">Successfully Create The Group.</string>
+    <string name="group_add_edit_create_edit_message">Successfully Edit The Group.</string>
+    <string name="group_add_edit_delete_success_message">Successfully Delete The Group.</string>
+    <string name="group_add_edit_delete_dialog_title">Delete Group</string>
+    <string name="group_add_edit_delete_dialog_message">Are you sure you want to delete</string>
+    <string name="group_add_edit_delete_dialog_postive_button">YES</string>
+    <string name="group_add_edit_delete_dialog_negtive_button">Cancel</string>
+    <string name="group_add_edit_no_permission_and_finish">Please Give Me Permission To Read And Write Your Storage.
+    </string>
+
+    <!-- my shoe -->
+    <string name="my_shoe_title">My Shoe</string>
+    <string name="my_shoe_no_shoe_hint">Tap "+" button to add your shoes.</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Personal Information</string>
+    <string name="profile_name_title">Name</string>
+    <string name="profile_phone_title">Phone</string>
+    <string name="profile_gender_title">Gender</string>
+    <string name="profile_gender_male">Male</string>
+    <string name="profile_gender_female">Female</string>
+    <string name="profile_birthday_title">Birthday</string>
+    <string name="profile_height_title">Height</string>
+    <string name="profile_weight_title">Weight</string>
+    <string name="profile_btn_save">Save</string>
+    <string name="profile_unit_cm">cm</string>
+    <string name="profile_unit_inch">inch</string>
+    <string name="profile_unit_kg">kg</string>
+    <string name="profile_unit_feet">feet</string>
+    <string name="profile_unit_lb">lb</string>
+    <string name="profile_unit_metric">Metric</string>
+    <string name="profile_unit_imperial">Imperial</string>
+    <string name="group_add_edit_title_edit_group">Edit Group</string>
+    <string name="group_add_edit_btn_edit_group">Save</string>
+    <string name="group_add_edit_btn_delete_group">Delete Group</string>
+
+    <!--marker顯示文字-->
+    <string name="tv_mark_txt">XX點,99999999步</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

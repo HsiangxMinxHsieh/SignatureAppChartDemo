@@ -1,0 +1,16 @@
+<resources>
+
+    <integer name="amin_duration">300</integer>
+    <dimen name="content_width_percent">0.92</dimen>
+
+    <dimen name="title_icon_height_percent">0.36</dimen>
+    <dimen name="title_icon_width_percent">0.13</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="setting_margin">10dp</dimen>
+    <dimen name="prev_margin">16dp</dimen>
+    <dimen name="drawer_icon_percent">0.1</dimen>
+    <dimen name="title_size">28px</dimen>
+    <dimen name="btn_text_size">16px</dimen>
+    <dimen name="btn_stroke_width">1px</dimen>
+    <dimen name="emoji_margin">6dp</dimen>
+</resources>

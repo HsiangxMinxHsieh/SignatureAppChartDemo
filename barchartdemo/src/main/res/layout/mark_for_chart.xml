@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                tools:ignore="Overdraw" android:id="@+id/relativeLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="70dp"
+            android:layout_height="20dp">
+
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/marker2_t"
+                android:id="@+id/img_mark_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="1" android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"/>
+        <ImageView
+
+                android:layout_width="18dp"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/crown_2" android:id="@+id/img_mark_crown"
+                android:layout_marginRight="8dp" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_mark_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.26" app:layout_constraintWidth_percent="1"
+                app:layout_constraintHorizontal_bias="0.222" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="2dp" android:layout_marginStart="2dp"/>
+        <TextView
+                android:id="@+id/tv_mark_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_centerHorizontal="true"
+                android:text="XXh,99999999s"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"
+
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                app:layout_constraintEnd_toEndOf="@+id/img_mark_background"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/img_mark_background"
+                app:layout_constraintHorizontal_bias="0.0"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

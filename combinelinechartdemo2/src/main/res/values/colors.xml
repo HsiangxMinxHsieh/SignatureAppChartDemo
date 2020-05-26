@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="theme_green">#00AD97</color>
+    <color name="theme_gray">#BBBBBB</color>
+    <color name="theme_green_background">#F7FFFE</color>
+    <!--WelcomPage-->
+    <color name="select_green">#00AD97</color>
+    <color name="select_gray">#66ffffff</color>
+
+
+    <color name="tab_color_on">#FFFFFF</color>
+    <color name="tab_color_off">#B7B7B7</color>
+    <color name="tab_color_bg">#FFFFFF</color>
+
+    <color name="orange">#ff5500</color>
+    <color name="white">#FFFFFF</color>
+    <color name="trans_white">#33FFFFFF</color>
+    <color name="trans_black">#66000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="gray">#999999</color>
+    <color name="gray2">#F4F4F4</color>
+    <color name="gray3">#ECECEC</color>
+    <color name="gray4">#cecece</color>
+    <color name="blue">#0066CC</color>
+    <color name="yellow">#F9CC30</color>
+    <color name="green">#8AC8C2</color>
+
+    <color name="bg_color_1">#0382D1</color>
+    <color name="bg_color_2">#03C8E0</color>
+
+    <color name="bg_color_3">#262E45</color>
+
+    <color name="default_divider">#33FFFFFF</color>
+    <color name="default_divider2">#cfcfcf</color>
+    <color name="default_divider3">#33555555</color>
+
+    <color name="calendar_gray">#C8C9CC</color>
+
+    <color name="dialog_bg">#FFFFFF</color>
+    <color name="dialog_txt_title">#000000</color>
+    <color name="dialog_txt_message">#999999</color>
+    <color name="dialog_btn_right">#00AD97</color>
+    <color name="dialog_btn_right2">#03C8E0</color>
+    <color name="dialog_btn_lift">#222222</color>
+    <color name="dialog_btn_lift2">#D81BE0</color>
+    <color name="dialog_divider">#999999</color>
+
+    <color name="login_bg">#88DA3B</color>
+
+
+    <color name="ig_login_bg">#155AE5</color>
+    <color name="fb_login_bg">#155AE5</color>
+
+    <color name="btn_bg1">#88DA3B</color>
+
+    <color name="txt_black">#000000</color>
+    <color name="txt_white">#FFFFFF</color>
+    <color name="txt_gray">#99FFFFFF</color>
+    <color name="txt_gray2">#555555</color>
+    <color name="txt_gray3">#FF8D8D8D</color>
+    <color name="txt_gray4">#888888</color>
+    <color name="txt_gray5">#222222</color>
+    <color name="txt_gray6">#B7B7B7</color>
+    <color name="txt_gray7">#cecece</color>
+    <color name="txt_gray8">#666666</color>
+    <color name="txt_gray9">#444444</color>
+    <color name="txt_like">#F75555</color>
+    <color name="txt_blue">#000066</color>
+    <color name="txt_unit">#66222222</color>
+
+    <!--barchartcolor(DasbBoard)-->
+    <color name="bar_chart_up">#88DA3B</color>
+    <color name="bar_chart_down">#88DA3B</color>
+
+    <!--LineChartColor(Activity)-->
+    <color name="grid_white">#E6FFFFFF</color>
+    <color name="line_chart">#5AA680</color>
+    <color name="line_chart_background_start">#88DA3B</color>
+    <color name="line_chart_background_end">#00AD97</color>
+    <color name="tab_text_color">#3CFFFFFF</color>
+
+    <!--Calendar-->
+    <color name="txt_dark_red">#A5263B</color>
+    <color name="txt_red">#ff0000</color>
+    <color name="txt_lawn_green">#008000</color>
+    <color name="txt_lawn_blue">#0C5FE5</color>
+
+    <!--MyShoe-->
+    <color name="conn_green">#88DA3B</color>
+    <color name="conn_gray">#CECECE</color>
+
+    <!--MissionFragment(Activity)-->
+    <color name="mission_count_background">#FFBA21</color>
+
+    <color name="defaultTitleColor">#3b79a9</color>
+    <color name="defaultMessageColor">#578fba</color>
+    <color name="defaultBackgroundColor">#a7cbeb</color>
+
+</resources>
+
