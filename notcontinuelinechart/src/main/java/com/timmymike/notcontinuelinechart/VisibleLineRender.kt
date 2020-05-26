@@ -15,11 +15,12 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 
-class VisibleLineRender(
+open class VisibleLineRender(
     protected var mChart: LineDataProvider, animator: ChartAnimator?,
     viewPortHandler: ViewPortHandler?
 ) : LineRadarRenderer(animator, viewPortHandler) {
     val TAG = javaClass.simpleName
+
     /**
      * paint for the inner circle of the value indicators
      */
@@ -195,10 +196,10 @@ class VisibleLineRender(
      * @param c
      * @param dataSet
      */
-    protected fun drawLinear(c: Canvas?, dataSet: ILineDataSet) {
+    private fun drawLinear(c: Canvas?, dataSet: ILineDataSet) {
         val entryCount = dataSet.entryCount
-        val isDrawSteppedEnabled = dataSet.isDrawSteppedEnabled
-        logi(TAG,"現在的Enabled狀態是===>$isDrawSteppedEnabled")
+        val isDrawSteppedEnabled = dataSet.mode == LineDataSet.Mode.STEPPED
+        logi(TAG, "現在的Enabled狀態是===>$isDrawSteppedEnabled")
         val pointsPerEntryPair = if (isDrawSteppedEnabled) 4 else 2
         val trans = mChart.getTransformer(dataSet.axisDependency)
         val phaseY = mAnimator.phaseY

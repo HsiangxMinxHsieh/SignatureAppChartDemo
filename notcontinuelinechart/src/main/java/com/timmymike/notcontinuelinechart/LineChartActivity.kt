@@ -236,14 +236,15 @@ class LineChartActivity : AppCompatActivity() {
             mode = LineDataSet.Mode.LINEAR //設定曲線模式
             setDrawCircles(true) //設定是否顯示圓點
             setDrawCircleHole(false)
-            setCircleColor(context.getColor(R.color.green))
-            color = ContextCompat.getColor(context, R.color.green)//設定線條顏色
-            lineWidth = 1.0f //設定線條寬度
+            setCircleColor(context.getColor(R.color.blue))
+            color = ContextCompat.getColor(context, R.color.blue)//設定線條顏色
+            lineWidth =5.0f //設定線條寬度
 //            fillColor = context.ge
-            fillAlpha = 200
-            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
-            fillDrawable = null
-            setDrawFilled(false)     //設定顯示曲線下背景漸層
+            fillAlpha = 50
+            fillColor = context.getColor(R.color.blue)
+//            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
+//            fillDrawable = null
+            setDrawFilled(true)     //設定顯示曲線下背景漸層
             setDrawValues(false)    //設定不顯示頂端值
             setDrawHorizontalHighlightIndicator(false)  //設定點擊不顯示水平線條
             setDrawVerticalHighlightIndicator(false)    //設定點擊不顯示垂直線條
@@ -269,9 +270,10 @@ class LineChartActivity : AppCompatActivity() {
             color = ContextCompat.getColor(context, R.color.txt_dark_red)//設定線條顏色
             lineWidth = 1.0f //設定線條寬度
             fillDrawable = null
+            fillColor= context.getColor(R.color.txt_red)
 //            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
 
-            setDrawFilled(false)     //設定顯示曲線下背景漸層
+            setDrawFilled(true)     //設定顯示曲線下背景漸層
             setDrawValues(false)    //設定不顯示頂端值
             setDrawHorizontalHighlightIndicator(false)  //設定點擊不顯示水平線條
             setDrawVerticalHighlightIndicator(false)    //設定點擊不顯示垂直線條
@@ -299,7 +301,7 @@ class LineChartActivity : AppCompatActivity() {
 //            fillDrawable = null
 //            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
 
-            setDrawFilled(false)     //設定顯示曲線下背景漸層
+            setDrawFilled(true)     //設定顯示曲線下背景漸層
             setDrawValues(false)    //設定不顯示頂端值
             setDrawHorizontalHighlightIndicator(false)  //設定點擊不顯示水平線條
             setDrawVerticalHighlightIndicator(false)    //設定點擊不顯示垂直線條
@@ -311,9 +313,9 @@ class LineChartActivity : AppCompatActivity() {
         }
         //全部線圖資料塞入
         val lineData = LineData()
-        lineData.addDataSet(startWorkSet)
+//        lineData.addDataSet(startWorkSet)
         lineData.addDataSet(endWorkSet)
-        lineData.addDataSet(aveWorkSet)
+//        lineData.addDataSet(aveWorkSet)
 
         return lineData
     }
