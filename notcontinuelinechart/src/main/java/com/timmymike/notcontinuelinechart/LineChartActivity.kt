@@ -177,11 +177,10 @@ class LineChartActivity : AppCompatActivity() {
             legend.isEnabled = true //左下角顯示資料名稱
             extraBottomOffset = 20f //設定下方空間
             setScaleEnabled(false) //設定不能縮放
+            renderer = JavaVisibleLineRender(this, this.animator, this.viewPortHandler);
 //            animateXY(0, 1000, Easing.EaseInCirc)
 //            animateX(2000)
 //            animateY(2000)
-            renderer = VisibleLineRender(this, this.animator, this.viewPortHandler);
-
         }
 
 //        設定點擊會彈出標記
@@ -194,7 +193,7 @@ class LineChartActivity : AppCompatActivity() {
 //                this as BarthisBase<*>
 //            )
 //        )
-
+        this.animateY(2000)
         this.invalidate()//繪製圖表
 
 
@@ -206,7 +205,7 @@ class LineChartActivity : AppCompatActivity() {
         var averangeWorkTime: Long = 0L,
         var workTime: Long = 0L
     )
-
+//
     /**設定左側Y座標值：*/
     inner class MyYAxisValueFormatter(private val min: Float) : ValueFormatter() {
 
@@ -309,9 +308,9 @@ class LineChartActivity : AppCompatActivity() {
             color = ContextCompat.getColor(context, R.color.txt_gray5)//設定線條顏色
             lineWidth =1f //設定線條寬度
 //            fillDrawable = null
-//            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
-            fillColor = context.getColor(R.color.txt_gray5)
-            fillAlpha = 50
+            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
+//            fillColor = context.getColor(R.color.txt_gray5)
+//            fillAlpha = 50
             setDrawFilled(true)     //設定顯示曲線下背景漸層
             setDrawValues(false)    //設定不顯示頂端值
             setDrawHorizontalHighlightIndicator(false)  //設定點擊不顯示水平線條
