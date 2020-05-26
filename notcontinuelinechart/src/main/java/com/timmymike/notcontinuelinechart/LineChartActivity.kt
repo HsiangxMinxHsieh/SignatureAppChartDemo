@@ -9,8 +9,6 @@ import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.LimitLine
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.CombinedData
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
@@ -35,9 +33,9 @@ class LineChartActivity : AppCompatActivity() {
         mBinding = DataBindingUtil.setContentView(activity, R.layout.activity_line_chart)
         val xLabels = arrayOf("日", "一", "二", "三", "四", "五", "六", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
 
-        mBinding.chartLineExample3.initChartView(getCombineExampleData(7,2),xLabels)
+        mBinding.chartLineExample3.initChartView(getCombineExampleData(7, 2), xLabels)
         mBinding.ivRefresh.setOnClickListener {
-            mBinding.chartLineExample3.initChartView(getCombineExampleData(7,2),xLabels)
+            mBinding.chartLineExample3.initChartView(getCombineExampleData(7, 2), xLabels)
         }
     }
 
@@ -65,7 +63,7 @@ class LineChartActivity : AppCompatActivity() {
         return result
     }
 
-    private fun LineChart.initChartView( datas: List<UserRecordModel.Data>, xLabels: Array<String>) {
+    private fun LineChart.initChartView(datas: List<UserRecordModel.Data>, xLabels: Array<String>) {
 //        logi(TAG, "傳入的XLabels是===>${xLabels.toList()}")
         //  設定白色常數(因為版本高低[高於23&低於23]因此有兩種寫法)
         val useLineColor = context.getColor(R.color.txt_gray5)
@@ -104,8 +102,8 @@ class LineChartActivity : AppCompatActivity() {
 //        println()
 
 //        定義X軸顯示
-        var needTrans = true
-        var valueDivider = 0f
+//        var needTrans = true
+//        var valueDivider = 0f
         this.xAxis.apply {
             setLabelCount(dayDatas.size, true)
 //            labelCount = datas.size //實際資料量
@@ -181,7 +179,7 @@ class LineChartActivity : AppCompatActivity() {
             animateXY(0, 1000, Easing.EaseInCirc)
 //            animateX(2000)
 //            animateY(2000)
-//                setRenderer(MyLineLegendRenderer(this, this.getAnimator(), this.getViewPortHandler()));
+            renderer = VisibleLineRender(this, this.animator, this.viewPortHandler);
 
         }
 
@@ -200,6 +198,7 @@ class LineChartActivity : AppCompatActivity() {
 
 
     }
+
     class DayData(
         var startedWorkTime: Long = 0L,
         var endWorkTime: Long = 0L,
@@ -224,20 +223,25 @@ class LineChartActivity : AppCompatActivity() {
     private fun getData(dayDatas: ArrayList<DayData>): LineData {
 
         //下班資料塞入
-        val endWorkEntries = ArrayList<Entry>()
+        val endWorkEntries = ArrayList<VisibleEntry>()
         //由於Entry只可以接受Float值，因此必須很疲勞的將傳入的Int轉為Float...@@a
         for (i in 0 until dayDatas.size) {
-            endWorkEntries.add(Entry(i.toFloat(), dayDatas[i].endWorkTime.toFloat()))
+            if ( dayDatas[i].endWorkTime == 0L)
+                endWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].endWorkTime.toFloat(), false))
+            else
+                endWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].endWorkTime.toFloat(), true))
         }
-//        logi(TAG, "完成後的endWorkEntries是===>$endWorkEntries")
-        val endWorkSet = LineDataSet(endWorkEntries, "EndWorkTime").apply {
-            mode = LineDataSet.Mode.HORIZONTAL_BEZIER //設定曲線模式
-            setDrawCircles(false) //設定不顯示圓點
+        logi(TAG, "完成後的endWorkEntries是===>$endWorkEntries")
+        val endWorkSet = VisibleLineDataSet(endWorkEntries, "EndWorkTime").apply {
+            mode = LineDataSet.Mode.LINEAR //設定曲線模式
+            setDrawCircles(true) //設定是否顯示圓點
+            setDrawCircleHole(false)
+            setCircleColor(context.getColor(R.color.green))
             color = ContextCompat.getColor(context, R.color.green)//設定線條顏色
             lineWidth = 1.0f //設定線條寬度
 //            fillColor = context.ge
             fillAlpha = 200
-//            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
+            fillDrawable = ContextCompat.getDrawable(context, R.drawable.fade_line_chart_background)//設定曲線下背景漸層
             fillDrawable = null
             setDrawFilled(false)     //設定顯示曲線下背景漸層
             setDrawValues(false)    //設定不顯示頂端值
@@ -248,15 +252,20 @@ class LineChartActivity : AppCompatActivity() {
 //            }
         }
         //平均上班時間資料塞入
-        val aveWorkEntries = ArrayList<Entry>()
+        val aveWorkEntries = ArrayList<VisibleEntry>()
         //由於Entry只可以接受Float值，因此必須很疲勞的將傳入的Int轉為Float...@@a
         for (i in 0 until dayDatas.size) {
-            aveWorkEntries.add(Entry(i.toFloat(), dayDatas[i].averangeWorkTime.toFloat()))
+            if ( dayDatas[i].averangeWorkTime == 0L)
+                aveWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].averangeWorkTime.toFloat(), false))
+            else
+                aveWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].averangeWorkTime.toFloat(), true))
         }
-//        logi(TAG, "完成後的 aveWorkEntries 是===>$aveWorkEntries")
-        val aveWorkSet = LineDataSet(aveWorkEntries, "aveWorkTime").apply {
-            mode = LineDataSet.Mode.HORIZONTAL_BEZIER //設定曲線模式
-            setDrawCircles(false) //設定不顯示圓點
+        logi(TAG, "完成後的 aveWorkEntries 是===>$aveWorkEntries")
+        val aveWorkSet = VisibleLineDataSet(aveWorkEntries, "aveWorkTime").apply {
+            mode = LineDataSet.Mode.LINEAR //設定曲線模式
+            setDrawCircles(true) //設定是否顯示圓點
+            setDrawCircleHole(false)
+            setCircleColor(context.getColor(R.color.txt_dark_red))
             color = ContextCompat.getColor(context, R.color.txt_dark_red)//設定線條顏色
             lineWidth = 1.0f //設定線條寬度
             fillDrawable = null
@@ -269,17 +278,22 @@ class LineChartActivity : AppCompatActivity() {
 
         }
         //開始上班時間資料塞入
-        val startWorkEntries = ArrayList<Entry>()
+        val startWorkEntries = ArrayList<VisibleEntry>()
         //由於Entry只可以接受Float值，因此必須很疲勞的將傳入的Int轉為Float...@@a
         for (i in 0 until dayDatas.size) {
-            startWorkEntries.add(Entry(i.toFloat(), dayDatas[i].startedWorkTime.toFloat()))
+            if ( dayDatas[i].startedWorkTime == 0L)
+                startWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].startedWorkTime.toFloat(), false))
+            else
+                startWorkEntries.add(VisibleEntry(i.toFloat(), dayDatas[i].startedWorkTime.toFloat(), true))
 //            logi(TAG, "開始上班轉換前的值是===>${dayDatas[i].startedWorkTime}")
 //            logi(TAG, "開始上班其意義為是===>${dayDatas[i].startedWorkTime.toDate().toString(timeFormate)}")
         }
-//        logi(TAG, "完成後的 startWorkEntries 是===>$startWorkEntries")
-        val startWorkSet = LineDataSet(startWorkEntries, "StartWorkTime").apply {
-            mode = LineDataSet.Mode.HORIZONTAL_BEZIER //設定曲線模式
-            setDrawCircles(false) //設定不顯示圓點
+        logi(TAG, "完成後的 startWorkEntries 是===>$startWorkEntries")
+        val startWorkSet = VisibleLineDataSet(startWorkEntries, "StartWorkTime").apply {
+            mode = LineDataSet.Mode.LINEAR //設定曲線模式
+            setDrawCircles(true) //設定是否顯示圓點
+            setDrawCircleHole(false)
+            setCircleColor(context.getColor(R.color.txt_gray5))
             color = ContextCompat.getColor(context, R.color.txt_gray5)//設定線條顏色
             lineWidth = 1.0f //設定線條寬度
 //            fillDrawable = null
@@ -348,7 +362,7 @@ class LineChartActivity : AppCompatActivity() {
 //                userZeroNum -= 1
                 result.add(UserRecordModel.Data("", 0, getStartTime(i), getEndTime(i)))
             } else {
-                result.add(UserRecordModel.Data("", 0, 0L.toDate().toString(timeFormate),null ))
+                result.add(UserRecordModel.Data("", 0, 0L.toDate().toString(timeFormate), null))
             }
 
         }
